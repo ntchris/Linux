@@ -91,3 +91,8 @@ fi
 
 #####   exit the script   #####
 exit 1
+
+
+######  run a command many times  ######
+for i in `seq 50`; do ./some_command.sh; done
+
