@@ -45,7 +45,7 @@ ssh -F $config root /proc/boot/ls -l /root/$zipfilename
 echo "downloading file $1..."
 
 # getting file from device    
-scp -F config  root:/root/$zipfilename $zipfilename
+scp -F $config  root:/root/$zipfilename $zipfilename
 
 echo "$zipfilename created and downloaded."
 ls -l $zipfilename
