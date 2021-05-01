@@ -1,7 +1,6 @@
 #!/bin/bash
-# run this script in raspberry pi zero W to automatically reset wifi twice a day in the reset hour
-# reset wifi at 6AM and 6PM everyday.
-RESETHOUR="06"
+
+RESETHOUR="6"
 resetWifi()
 {
   echo "shuting down wifi...in 5 seconds"
@@ -13,6 +12,18 @@ resetWifi()
 
 }
 
+checkResetHour()
+{
+
+  # append a 0 if the reset hour has only one digit to match the date command output
+  len=${#RESETHOUR}
+  if [ $len == 1 ]; then
+    RESETHOUR="0$RESETHOUR"
+  fi
+
+}
+
+checkResetHour
 while true; do
   hour=`date +%I`
   echo "current time hour is $hour"
@@ -23,6 +34,6 @@ while true; do
   else
     echo "not good time, sleeping and waiting for good time to reset:$RESETHOUR"
   fi
+  echo sleeping ...
   sleep 1h
 done
-
